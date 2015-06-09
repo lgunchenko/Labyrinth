@@ -49,9 +49,12 @@ def walker_main(x1 , y1 , x2 , y2):
                 field[cs[i + 1] - 1][ys[i] - h - 1] = "0"
 
     for i in range(HEIGHT):
-        if field[-2][i] == '0':
-            if field[-2][i+1] == '1':
-                field[-1][i-1] = '0'
+            if field[-2][i] == '0':
+                if field[-2][i+1] == '1':
+                    if field[-2][i-1] == '0':
+                        field[-1][i-1] = '0'
+                    elif field[-2][i-1] == '1':
+                        field[-1][i] = '0'
 
         for x in range(1,WIDTH-2):
             for y in range(1,HEIGHT-1):
