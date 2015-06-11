@@ -69,8 +69,6 @@ def walker_main(x1 , y1 , x2 , y2):
                         counter += 1
                 if counter == 1:
                     field[x][y] = '0'
-
-
 walker_main(1, 1, WIDTH, HEIGHT)
 
 
@@ -84,6 +82,61 @@ for n in printer:
 for i in range(HEIGHT):
     if field[0][i] == '0':
         sh =i
+        
+def left_hand(x, y, xp, yp):
+    global field
+    global WIDTH
+    global HEIGHT
+    count = 0
+    if x == WIDTH-1 :
+        return count 
+        print(count)
+    elif x == xp and y > yp:
+        if field[x+1][y] == 0:
+            return(count + left_hand(x+1 , y , x , y))
+        else:
+            if field[x][y+1] == 0:
+                return(count + left_hand(x , y+1 , x , y))
+            else:
+                if field[x-1][y] == 0:
+                    return(count + left_hand(x-1 , y , x , y))
+                else:
+                    return(count + left_hand(x , y-1 , x , y))
+    elif x > xp and y == yp:
+        if field[x][y-1] == 0:
+            return(count + left_hand(x , y-1 , x , y))
+        else:
+            if field[x+1][y] == 0:
+                return(count + left_hand(x+1 , y , x , y))
+            else:
+                if field[x][y+1] == 0:
+                    return(count + left_hand(x , y+1 , x , y))
+                else:
+                    return(count + left_hand(x-1 , y , x , y))
+    elif x == xp and y < yp:
+        if field[x-1][y] == 0:
+            return(count + left_hand(x-1 , y , x , y))
+        else:
+            if field[x][y-1] == 0:
+                return(count + left_hand(x , y-1 , x , y))
+            else:
+                if field[x+1][y] == 0:
+                    return(count + left_hand(x+1 , y , x , y))
+                else:
+                    return(count + left_hand(x , y+1 , x , y))
+    elif x < xp and y == yp:
+        if field[x][y+1] == 0:
+            return(count + left_hand(x , y+1 , x , y))
+        else:
+            if field[x-1][y] == 0:
+                return(count + left_hand(x-1 , y , x , y))
+            else:
+                if field[x][y-1] == 0:
+                    return(count + left_hand(x , y-1 , x , y))
+                else:
+                    return(count + left_hand(x+1 , y , x , y))
+
+left_hand(1, sh, 0, sh)
 
 
 def painter():
