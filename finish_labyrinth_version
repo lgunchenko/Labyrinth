@@ -343,6 +343,7 @@ Bизуализация лабиринта и стратегий его прох
 
 """
 
+
 def painter():
     global HEIGHT
     global WIDTH
@@ -360,29 +361,26 @@ def painter():
 
     #показатели оканчательного счета каждой стратегии после прохождения 
 
-    c.create_text( 10, (HEIGHT)*20 + 40, text= "Forward strategion score:",  font = "Arial", anchor = 'w', fill = 'black')
-    c.create_text( 10, (HEIGHT)*20 + 80, text= "Right hand strategion score:",  font = "Arial", anchor = 'w', fill = 'green')       
-    c.create_text( 10, (HEIGHT)*20 + 120, text= "Left hand strategion score:",  font = "Arial", anchor = 'w', fill = 'red')
-
+   
 painter()
 
-#стратегия "вперед" визуализированна с помощью желтого шарика
+#стратегия "вперед" визуализирована с помощью желтого шарика
 
 mousebot = c.create_oval(0 , 20 * sh , 20 , 20 * sh + 20 , fill = "yellow")
+c.create_text( 10, (HEIGHT)*20 + 40, text= "Forward strategion score:" + ' ' + str(rightforward(1, sh, 0, sh, 0)),  font = "Arial", anchor = 'w', fill = 'black')
+    
+
+#стратегия правой руки визуализирована с помощью зеленого шарика
+
 c.coords(mousebot, 0 , 20 * sh , 20 , 20 * sh + 20)
-c.create_text( 215, (HEIGHT)*20 + 40, text= str(rightforward(1, sh, 0, sh, 0)),  font = "Arial", anchor = 'w', fill = 'black')
-
-
-#стратегия правой руки визуализированна с помощью зеленого шарика
-
 c.itemconfig(mousebot, fill = "green")
-#c.coords(mousebot, 0 , 20 * sh , 20 , 20 * sh + 20)
-c.create_text( 215, (HEIGHT)*20 + 80, text= str(right_hand(1, sh, 0, sh, 0)),  font = "Arial", anchor = 'w', fill = 'green')
+c.create_text( 10, (HEIGHT)*20 + 80, text= "Right hand strategion score:" + ' ' + str(right_hand(1, sh, 0, sh, 0)),  font = "Arial", anchor = 'w', fill = 'green')       
+    
 
+#стратегия левой руки визуализирована с помощью красного шарика
 
-#стратегия левой руки визуализированна с помощью красного шарика
-
+c.coords(mousebot, 0 , 20 * sh , 20 , 20 * sh + 20)
 c.itemconfig(mousebot, fill = "red")
-c.create_text( 215, (HEIGHT)*20 + 120, text= str(left_hand(1, sh, 0, sh, 0)),  font = "Arial", anchor = 'w', fill = 'red')
+c.create_text( 10, (HEIGHT)*20 + 120, text= "Left hand strategion score:" + ' ' + str(left_hand(1, sh, 0, sh, 0)),  font = "Arial", anchor = 'w', fill = 'red')
 
 c.mainloop()
