@@ -1,25 +1,57 @@
 import tkinter
 import random
 
-WIDTH = int(input("The width of labyrinth (better 13- 100): "))
-HEIGHT = int(input("The height of labyrinth (better 4 - 70): "))
+WIDTH = int(input("The width of labyrinth: "))
+HEIGHT = int(input("The height of labyrinth: "))
 
 field = [[1 for i in range(HEIGHT)] for i in range(WIDTH)]
 
-#регулируются размеры клеток в зависимости от размеров лабиринта
+#функция, выдающее сообщение об ошибки при неверных параметрах
 
+def mistake():
+    q = tkinter.Canvas( width = 500, height = 200)
+    q.pack()
+
+    q.create_text( 50, 40, text= "These parameters are to high" ,  font = "Arial 24", anchor = 'w', fill = 'red') 
+    q.create_text( 135, 90, text= "Please, change them" ,  font = "Arial 16", anchor = 'w', fill = 'green') 
+
+    q.create_text( 110, 130, text= "Width must be 13-50" ,  font = "Arial 20", anchor = 'w', fill = 'black')       
+    q.create_text( 115, 170, text= "Height must be 4-30" ,  font = "Arial 20", anchor = 'w', fill = 'black')       
+ 
+    q.mainloop()
+
+def mistaking():
+    p = tkinter.Canvas( width = 500, height = 200)
+    p.pack()
+
+    p.create_text( 50, 40, text= "These parameters are to low" ,  font = "Arial 24", anchor = 'w', fill = 'red') 
+    p.create_text( 135, 90, text= "Please, change them" ,  font = "Arial 16", anchor = 'w', fill = 'green') 
+
+    p.create_text( 110, 130, text= "Width must be 13-50" ,  font = "Arial 20", anchor = 'w', fill = 'black')       
+    p.create_text( 115, 170, text= "Height must be 4-30" ,  font = "Arial 20", anchor = 'w', fill = 'black')       
+ 
+    p.mainloop()
+    
+
+if WIDTH > 50 or HEIGHT > 30:
+    mistake()
+    exit(0)
+elif WIDTH <= 12 or HEIGHT<= 3:
+    mistaking()
+    exit(0)
+
+#регулируются размеры клеток в зависимости от размеров лабиринта
 t= 1
 
-if WIDTH>= 100 or HEIGHT >= 40:
-    t = 10
-elif WIDTH < 100 and HEIGHT < 40:
-    if WIDTH >= 50 or HEIGHT >= 25:
+if WIDTH <= 50 and HEIGHT <= 30:
+    if WIDTH == 50 or HEIGHT >= 25:
         t =15
     elif WIDTH < 50 and HEIGHT < 25:
         if WIDTH >= 20 or HEIGHT >= 10:
             t =20
         elif WIDTH < 20 and HEIGHT < 10:
-            t = 25
+            if WIDTH > 12 and HEIGHT > 3:
+                t = 25
 
 c = tkinter.Canvas( width = (WIDTH) * t, height = (HEIGHT)*t + 150)
 c.pack()
